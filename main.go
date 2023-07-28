@@ -60,7 +60,7 @@ func main() {
 		GasLimit:        0x1c9c380,
 		GasUsed:         0x0,
 		Time:            0x64c40d54,
-		Extra:           []byte("0xd883010c01846765746888676f312e32302e35856c696e7578"),
+		Extra:           common.Hex2Bytes("d883010c01846765746888676f312e32302e35856c696e7578"),
 		MixDigest:       common.HexToHash("0x70ccadc40b16e2094954b1064749cc6fbac783c1712f1b271a8aac3eda2f2325"),
 		Nonce:           types.BlockNonce{},
 		BaseFee:         big.NewInt(0x7),
@@ -81,6 +81,9 @@ func main() {
 	if err := headerOne.EncodeRLP(buf); err != nil {
 		log.Fatal(err)
 	}
+
+	// print extradata
+	fmt.Printf("extraData: %x\n", headerOne.Extra)
 
 	// write as hex
 	fmt.Printf("%x\n", buf.Bytes())
